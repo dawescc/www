@@ -1,0 +1,16 @@
+{
+	"name": "dawes.cc",
+	"source": "src/**/*.html",
+	"scripts": {
+		"dev": "parcel",
+		"build": "parcel build",
+		"deploy": "rm -rf dist && bun run build && eval $(grep '^DEPLOY_URL' .env) && rsync -avz --delete ./dist/ $DEPLOY_URL"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "4.1.0",
+		"parcel": "^2",
+		"postcss": "^8",
+		"postcss-import": "^16.1.0",
+		"tailwindcss": "4.1.0"
+	}
+}
