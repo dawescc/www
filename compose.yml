@@ -1,0 +1,9 @@
+services:
+    test-1:
+        image: dawescc/www:0.1.1
+        container_name: www
+        ports:
+            - 3000:3000
+        volumes:
+            - ./src/data.json:/app/src/data.json
+        restart: unless-stopped
