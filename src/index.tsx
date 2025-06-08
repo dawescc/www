@@ -1,67 +1,46 @@
 import { serve } from "bun";
-// We no longer need to import the data directly here,
-// as we will read it on demand to ensure we always have the latest version.
 
-const API_SECRET_KEY = Bun.env.API_SECRET_KEY;
-const DATA_PATH = "src/data.json"; // Define path as a constant for easy reuse
+type JSONValue = string | number | boolean | null | JSONObject | { [x: string]: JSONValue };
 
-if (!API_SECRET_KEY) {
-	console.error("Error: API_SECRET_KEY is not set in the .env file.");
-	process.exit(1);
+interface JSONObject {
+	[x: string]: JSONValue;
 }
 
-// Reusable function for authentication. This cleans up our route handlers.
-function authenticate(req: Request): boolean {
-	const authHeader = req.headers.get("Authorization");
-	if (!authHeader || !authHeader.startsWith("Bearer ")) {
-		return false;
-	}
-	const suppliedKey = authHeader.split(" ")[1];
-	return suppliedKey === API_SECRET_KEY;
+const DATA_PATH = "src/data.json" as const;
+
+if (!DATA_PATH) {
+	console.error("Error: DATA_PATH not found.");
+	process.exit(1);
 }
 
 const server = serve({
 	routes: {
-		"/": {
-			async GET() {
+		"/*": {
+			async GET(req) {
+				const url = new URL(req.url);
+				const pathname = url.pathname;
 				const content = await Bun.file(DATA_PATH).json();
-				return Response.json(content);
-			},
-		},
-		"/edit": {
-			async PUT(req) {
-				if (!authenticate(req)) {
-					return Response.json({ error: "Unauthorized." }, { status: 401 });
+				if (typeof content !== "object" || content === null || Array.isArray(content)) {
+					return Response.json({ error: "Server data is not a valid JSON object." }, { status: 500 });
 				}
-				try {
-					const newContent = await req.json();
-					await Bun.write(DATA_PATH, JSON.stringify(newContent, null, 2));
-					return Response.json({
-						message: "Success. Content Replaced.",
-						content: newContent,
-					});
-				} catch (error) {
-					return Response.json({ error: "Invalid JSON in request body." }, { status: 400 });
-				}
-			},
 
-			async PATCH(req) {
-				if (!authenticate(req)) {
-					return Response.json({ error: "Unauthorized." }, { status: 401 });
+				if (pathname === "/") {
+					return Response.json(content);
 				}
-				try {
-					const currentContent = await Bun.file(DATA_PATH).json();
-					const patchContent = await req.json();
-					const newContent = { ...currentContent, ...patchContent };
-					await Bun.write(DATA_PATH, JSON.stringify(newContent, null, 2));
 
-					return Response.json({
-						message: "Content patched successfully!",
-						newData: newContent,
-					});
-				} catch (error) {
-					return Response.json({ error: "Invalid JSON in request body or file read error." }, { status: 400 });
+				const keys = pathname.split("/").filter((key) => key.length > 0);
+
+				let currentObject: JSONValue = content;
+				for (const key of keys) {
+					if (typeof currentObject === "object" && currentObject !== null && Object.hasOwn(currentObject, key)) {
+						currentObject = currentObject[key];
+					} else {
+						return new Response("Not Found", { status: 404 });
+					}
 				}
+
+				const lastKey = keys[keys.length - 1];
+				return Response.json({ [lastKey]: currentObject });
 			},
 		},
 	},
