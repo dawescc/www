@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@layer base {
+	:root {
+		--color-highlights: oklch(82.334% 0.1002 296.402);
+		--color-highlights-2: oklch(92.173% 0.06029 216.083);
+		--color-background: oklch(97% 0.00011 271.152);
+		font-family: "Geist Variable", sans-serif;
+	}
+}
+
+@theme inline {
+	--color-highlights: var(--color-highlights);
+	--color-highlights-2: var(--color-highlights-2);
+	--color-background: var(--color-background);
+}
+
+@layer base {
+	::selection,
+	.selected {
+		&::selection {
+			@apply bg-highlights-2 text-black;
+			text-shadow: none;
+		}
+		@apply bg-highlights text-black;
+		text-shadow: none;
+	}
+
+	body {
+		@apply bg-background;
+	}
+}
