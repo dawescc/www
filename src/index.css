@@ -5,7 +5,15 @@
 		--color-highlights: oklch(82.334% 0.1002 296.402);
 		--color-highlights-2: oklch(92.173% 0.06029 216.083);
 		--color-background: oklch(97% 0.00011 271.152);
-		font-family: "Geist Variable", sans-serif;
+		--color-text: oklch(0% 0 271.152);
+		--color-layer-1: oklch(95.5% 0.00011 271.152);
+		--font-geist-sans: "Geist Variable", sans-serif;
+		--font-merriweather: "Merriweather Sans Variable", sans-serif;
+		@media (prefers-color-scheme: dark) {
+			--color-background: oklch(0% 0.00011 271.152);
+			--color-layer-1: oklch(20% 0.00011 271.152);
+			--color-text: oklch(95% 0 271.152);
+		}
 	}
 }
 
@@ -13,20 +21,30 @@
 	--color-highlights: var(--color-highlights);
 	--color-highlights-2: var(--color-highlights-2);
 	--color-background: var(--color-background);
+	--color-text: var(--color-text);
+	--color-layer-1: var(--color-layer-1);
+	--font-geist: var(--font-geist-sans);
+	--font-merry: var(--font-merriweather);
 }
 
 @layer base {
 	::selection,
-	.selected {
+	.selected,
+	*:any-link {
+		@apply rounded-md px-1;
 		&::selection {
 			@apply bg-highlights-2 text-black;
 			text-shadow: none;
 		}
 		@apply bg-highlights text-black;
 		text-shadow: none;
+
+		&:link:not(:hover) {
+			@apply underline;
+		}
 	}
 
 	body {
-		@apply bg-background;
+		@apply bg-background text-text border-current;
 	}
 }

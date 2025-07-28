@@ -1,7 +1,12 @@
 services:
     test-latest:
-        image: ghcr.io/dawescc/www:0.1.3
+        image: ghcr.io/dawescc/www:nightly
         container_name: www
+        environment:
+            - STRAVA_CLIENT_ID=${STRAVA_CLIENT_ID}
+            - STRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET}
+        volumes:
+            - ./tokens.json:/app/tokens.json
         ports:
             - 3000:3000
         restart: unless-stopped
