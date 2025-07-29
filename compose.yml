@@ -7,6 +7,7 @@ services:
             - STRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET}
         volumes:
             - ./tokens.json:/app/tokens.json
+            - ./books.json:/app/books.json
         ports:
             - 3000:3000
         restart: unless-stopped

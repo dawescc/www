@@ -6,12 +6,16 @@
 		--color-highlights-2: oklch(92.173% 0.06029 216.083);
 		--color-background: oklch(97% 0.00011 271.152);
 		--color-text: oklch(0% 0 271.152);
+		--color-accent: oklch(65.5% 0.00011 271.152);
 		--color-layer-1: oklch(95.5% 0.00011 271.152);
+		--color-layer-2: oklch(92.5% 0.00011 271.152);
 		--font-geist-sans: "Geist Variable", sans-serif;
 		--font-merriweather: "Merriweather Sans Variable", sans-serif;
 		@media (prefers-color-scheme: dark) {
-			--color-background: oklch(0% 0.00011 271.152);
+			--color-background: oklch(15% 0.00011 271.152);
+			--color-accent: oklch(65.5% 0.00011 271.152);
 			--color-layer-1: oklch(20% 0.00011 271.152);
+			--color-layer-2: oklch(24% 0.00011 271.152);
 			--color-text: oklch(95% 0 271.152);
 		}
 	}
@@ -22,7 +26,9 @@
 	--color-highlights-2: var(--color-highlights-2);
 	--color-background: var(--color-background);
 	--color-text: var(--color-text);
+	--color-accent: var(--color-accent);
 	--color-layer-1: var(--color-layer-1);
+	--color-layer-2: var(--color-layer-2);
 	--font-geist: var(--font-geist-sans);
 	--font-merry: var(--font-merriweather);
 }
@@ -30,7 +36,7 @@
 @layer base {
 	::selection,
 	.selected,
-	*:any-link {
+	*:any-link:not(.clean) {
 		@apply rounded-md px-1;
 		&::selection {
 			@apply bg-highlights-2 text-black;
@@ -46,5 +52,9 @@
 
 	body {
 		@apply bg-background text-text border-current;
+	}
+
+	.tile {
+		@apply px-6 py-5 bg-layer-1 rounded-[1.121rem];
 	}
 }

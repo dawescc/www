@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function RunYTD() {
+export default function RunYTD() {
 	const [distanceKm, setDistanceKm] = useState<number | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
