@@ -10,6 +10,7 @@
 		--color-layer-1: oklch(95.5% 0.00011 271.152);
 		--color-layer-2: oklch(92.5% 0.00011 271.152);
 		--font-geist-sans: "Geist Variable", sans-serif;
+		--font-liberata: "Literata Variable", serif;
 		--font-merriweather: "Merriweather Sans Variable", sans-serif;
 		@media (prefers-color-scheme: dark) {
 			--color-background: oklch(15% 0.00011 271.152);
@@ -31,6 +32,7 @@
 	--color-layer-2: var(--color-layer-2);
 	--font-geist: var(--font-geist-sans);
 	--font-merry: var(--font-merriweather);
+	--font-liberata: var(--font-liberata);
 }
 
 @layer base {

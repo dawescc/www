@@ -5,6 +5,7 @@
       "name": "dawescc-www",
       "dependencies": {
         "@fontsource-variable/geist": "^5.2.6",
+        "@fontsource-variable/literata": "^5.2.6",
         "@fontsource-variable/merriweather-sans": "^5.2.6",
         "bun-plugin-tailwind": "^0.0.14",
         "react": "^19",
@@ -20,6 +21,8 @@
   },
   "packages": {
     "@fontsource-variable/geist": ["@fontsource-variable/geist@5.2.6", "", {}, "sha512-Bt9pdD55Fojq4h9yFKQAzh5+Xj4tKFpwbcDzK6t5PPSH2GrjPoPqm6N8y+tK6vzwKZ9hHyaOz/tAbO9cQd9UFQ=="],
+
+    "@fontsource-variable/literata": ["@fontsource-variable/literata@5.2.6", "", {}, "sha512-9ggXmkaGKzJUvfiEX66m7iuDzkbKBN1t5ei4sHPSn5voeMeMUOi3NMuZ702mG0dXvuJVKOs4oe26AjfyHheshg=="],
 
     "@fontsource-variable/merriweather-sans": ["@fontsource-variable/merriweather-sans@5.2.6", "", {}, "sha512-m1PqGAd/d7z55ZxnhoRbJD1DQUumP356CW2q3lB6AWMtrotVBIT8TJAFTiSllA9Y1qCSqUN4Mu4bHdqK9xM+Uw=="],
 
