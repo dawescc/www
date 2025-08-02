@@ -60,7 +60,7 @@ export function App() {
 								key={readList.key}
 								className='flex flex-col gap-5'>
 								<p className='text-2xl text-accent'>{readList.title}</p>
-								<div className='w-full flex gap-10 overflow-x-scroll snap-x snap-mandatory snap-always snap-center rounded-xl'>
+								<div className='w-full flex gap-10 overflow-x-scroll snap-x snap-mandatory snap-always snap-center rounded-xl container'>
 									{readList.entries.map((bookEntry) => (
 										<Book
 											key={bookEntry.title}
