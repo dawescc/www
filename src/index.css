@@ -2,18 +2,6 @@
 
 @layer base {
 	:root {
-		--title-size: calc(42px + 0.005 * (100vw - 400px));
-		--title-line-height: calc(var(--title-size) + 4px);
-
-		--body-size: calc(28px + 0.005 * (100vw - 400px));
-		--body-line-height: calc(var(--body-size) + 4px);
-
-		--book-title-size: calc(20px + 0.005 * (100vw - 400px));
-		--book-title-line-height: calc(var(--book-title-size) + 4px);
-
-		--book-author-size: calc(16px + 0.005 * (100vw - 400px));
-		--book-author-line-height: calc(var(--book-author-size) + 4px);
-
 		--color-highlights: oklch(82.334% 0.1002 296.402);
 		--color-highlights-2: oklch(92.173% 0.06029 216.083);
 		--color-background: oklch(97% 0.00011 271.152);
@@ -32,22 +20,16 @@
 			--color-text: oklch(95% 0 271.152);
 		}
 	}
+
+	body {
+		font-size: 25px;
+		letter-spacing: 0.033em;
+		line-height: 1.55em;
+		word-spacing: -0.025em;
+	}
 }
 
 @theme inline {
-	--text-*: initial;
-	--text-title: var(--title-size);
-	--text-title--line-height: var(--title-line-height);
-
-	--text-body: var(--body-size);
-	--text-body--line-height: var(--body-line-height);
-
-	--text-book-title: var(--book-title-size);
-	--text-book-title--line-height: var(--book-title-line-height);
-
-	--text-book-author: var(--book-author-size);
-	--text-book-author--line-height: var(--book-author-line-height);
-
 	--color-highlights: var(--color-highlights);
 	--color-highlights-2: var(--color-highlights-2);
 	--color-background: var(--color-background);

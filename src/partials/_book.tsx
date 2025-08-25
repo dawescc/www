@@ -11,38 +11,26 @@ interface BookProps {
 
 export default function Book({ book }: BookProps) {
 	return (
-		<div className='w-[calc((325px)_+_.005*(100dvw_-_400px))] md:w-[calc((420px)_+_.005*(100dvw_-_400px))] h-[200px] flex-none p-5 flex gap-5 rounded-3xl bg-layer-2 hover:scale-95 transition-[scale] ease-in-out items-center relative overflow-clip'>
-			{book.coverUrl && (
-				<div className='absolute z-0 inset-0 w-full h-auto -translate-y-1/2 scale-200 opacity-25 blur-lg select-none'>
-					<img
-						src={book.coverUrl}
-						alt={`Cover for ${book.title}`}
-						height={162}
-						width={108}
-						className='aspect-auto w-full h-auto object-cover'
-					/>
-				</div>
-			)}
-			<div className='relative z-1 shrink-0 bg-layer-2 overflow-clip rounded-md'>
-				{book.coverUrl && (
-					<img
-						src={book.coverUrl}
-						alt={`Cover for ${book.title}`}
-						height={162}
-						width={108}
-						className='aspect-auto w-full h-auto object-cover'
-					/>
-				)}
-			</div>
-			<div className='z-1 py-5 h-full flex flex-col justify-between font-black text-book-title w-full'>
+		<tr
+			id={book.title
+				.toLowerCase()
+				.trim()
+				.replace(/[^\w\s-]/g, "")
+				.replace(/[\s_-]+/g, "-")
+				.replace(/^-+|-+$/g, "")}
+			className='*:[td]:p-2 align-middle'>
+			<td>
 				<a
-					href={book.bookLink}
-					title={book.title}
-					className='font-geist clean hover:underline line-clamp-3 break-before-all opacity-85 dark:opacity-90'>
-					{book.title}
+					href={book.bookLink || "#"}
+					title={book.title || "N/a"}
+					className='clean group grid grid-cols-1 md:grid-cols-2'>
+					<p className='font-bold underline group-hover:no-underline'>{book.title || "N/a"}</p>
+					<p className='text-accent md:hidden'>{book.authors.join(", ") || "N/a"}</p>
 				</a>
-				<p className='truncate break-before-all text-book-author text-accent text-shadow-md'>{book.authors.join(", ") || "N/A"}</p>
-			</div>
-		</div>
+			</td>
+			<td>
+				<p className='text-accent hidden md:block'>{book.authors.join(", ") || "N/a"}</p>
+			</td>
+		</tr>
 	);
 }
