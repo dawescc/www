@@ -25,7 +25,7 @@ export default function RunYTD() {
 		fetchDistance();
 	}, []);
 
-	if (error) return "... hm, Strava is having issues, but its a lot of ";
+	if (error) return "???.??";
 	if (distanceKm === null) return "hmmm";
 
 	return distanceKm.toFixed(2);
