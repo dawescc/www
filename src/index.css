@@ -46,7 +46,7 @@
 	::selection,
 	.selected,
 	*:any-link:not(.clean) {
-		@apply rounded-md px-1;
+		@apply px-1;
 		&::selection {
 			@apply bg-highlights-2 text-black;
 			text-shadow: none;

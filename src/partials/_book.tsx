@@ -2,7 +2,7 @@ interface BookDetails {
 	title: string;
 	authors: string[];
 	bookLink: string;
-	coverUrl: string | null;
+	coverUrl?: string | null;
 }
 
 interface BookProps {
