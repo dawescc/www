@@ -45,6 +45,25 @@ const server = serve({
 		"/*": index,
 		"/api/running/ytd-total": {
 			async GET() {
+                const CACHE_PATH = "./strava-stats-cache.json";
+                const CACHE_DURATION = 3600; // 1 hour
+
+                try {
+                    const cacheRaw = await readFile(CACHE_PATH, "utf8").catch(() => null);
+                    if (cacheRaw) {
+                        const cache = JSON.parse(cacheRaw);
+                        const now = Math.floor(Date.now() / 1000);
+                        if (now - cache.updated_at < CACHE_DURATION) {
+                            return new Response(JSON.stringify(cache.data), {
+                                status: 200,
+                                headers: { "Content-Type": "application/json" },
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.error("Cache read error, proceeding to fetch", e);
+                }
+
 				const accessToken = await getValidStravaToken();
 				const res = await fetch("https://www.strava.com/api/v3/athletes/144880512/stats", {
 					headers: {
@@ -57,6 +76,17 @@ const server = serve({
 				}
 
 				const data = await res.json();
+                
+                // Update cache
+                try {
+                    await writeFile(CACHE_PATH, JSON.stringify({
+                        updated_at: Math.floor(Date.now() / 1000),
+                        data: data.ytd_run_totals
+                    }, null, 2), "utf8");
+                } catch (e) {
+                    console.error("Failed to write stats cache", e);
+                }
+
 				return new Response(JSON.stringify(data.ytd_run_totals), {
 					status: 200,
 					headers: {

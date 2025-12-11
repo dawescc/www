@@ -1,6 +1,6 @@
 {
 	"name": "dawescc-www",
-	"version": "0.2.0",
+	"version": "0.2.2",
 	"private": true,
 	"type": "module",
 	"main": "src/index.tsx",
@@ -15,8 +15,11 @@
 		"@fontsource-variable/literata": "^5.2.6",
 		"@fontsource-variable/merriweather-sans": "^5.2.6",
 		"bun-plugin-tailwind": "^0.0.14",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.559.0",
 		"react": "^19",
 		"react-dom": "^19",
+		"tailwind-merge": "^3.4.0",
 		"tailwindcss": "^4.0.6"
 	},
 	"devDependencies": {
