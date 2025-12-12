@@ -1,35 +1,48 @@
 @import "tailwindcss";
 
-@layer base {
-	:root {
-		--font-geist-sans: "Geist Variable", sans-serif;
-		--font-liberata: "Literata Variable", serif;
-		--font-merriweather: "Merriweather Sans Variable", sans-serif;
-	}
-
-    html, body {
-        height: 100%;
-        width: 100%;
-        overflow: hidden; /* Prevent scrolling */
-        margin: 0;
-        padding: 0;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    .inline-grow { 
-        text-grow: per-line/consistent scale; 
-    }
-}
-
 @theme inline {
-	--font-geist: var(--font-geist-sans);
-	--font-merry: var(--font-merriweather);
-	--font-liberata: var(--font-liberata);
+	--color-sand-1: oklch(0.79 0.04 45);
+	--color-sand-2: oklch(0.77 0.035 48);
+	--color-sand-3: oklch(0.82 0.025 55);
+	--color-sand-4: oklch(0.87 0.03 55);
+	--color-sand-5: oklch(0.9 0.015 55);
+
+	--color-bg: var(--color-sand-4);
+	--color-surface-1: var(--color-sand-5);
+	--color-surface-2: var(--color-sand-3);
+	--color-border: var(--color-sand-2);
+
+	--color-text: oklch(0.32 0.06 55);
+	--color-text-sub: oklch(0.4 0.06 55);
+
+	--shadow-warm: 0px 0px 0px 1px oklch(0.35 0.06 55 / 0.06), 0px 1px 2px -1px oklch(0.35 0.06 55 / 0.06), 0px 2px 4px 0px oklch(0.35 0.06 55 / 0.04);
+	--shadow-warm-hover: 0px 0px 0px 1px oklch(0.35 0.06 55 / 0.08), 0px 1px 3px -2px oklch(0.35 0.06 55 / 0.12), 0px 2px 4px 0px oklch(0.35 0.06 55 / 0.08);
+
+	--font-merriweather: "Merriweather Sans Variable", sans-serif;
 }
 
-/* Custom Scrollbar if needed, but we are hiding overflow */
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+@layer base {
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+	}
+}
+
+.article-underline {
+	text-underline-offset: 3px;
+	transition: color 0.2s ease-out, text-decoration-color 0.2s ease-out;
+	text-decoration-line: underline;
+	text-decoration-color: var(--color-surface-2);
+}
+.article-underline:hover {
+	text-decoration-color: var(--color-text);
+	color: var(--color-text);
+}
+
+.link-outline:focus-visible {
+	outline: 2px solid var(--color-text);
+	outline-offset: 2px;
+	border-radius: 2px;
 }

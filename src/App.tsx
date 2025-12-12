@@ -1,123 +1,86 @@
-import { useState, useEffect, createContext, useContext } from "react";
-import "@fontsource-variable/geist";
-import "@fontsource-variable/merriweather-sans/wght-italic.css";
-import "@fontsource-variable/literata/wght-italic.css";
+import '@fontsource-variable/merriweather-sans';
 import "./index.css";
-import { CardStack } from "./components/CardStack";
-import { Github, Activity, Terminal } from "lucide-react";
+import logo from "./logo.svg";
+import Section, { SectionHeader } from './components/section';
+import { MailIcon, TwitterIcon, GitHubIcon } from './components/icons';
+import Chip from './components/chip';
+import RunYTD from './components/strava';
+import Card from './components/card';
 
-export const RunContext = createContext<string>("hmmm");
+const LINKS = [
+  { name: "GitHub", url: "https://github.com/dawescc", Icon: GitHubIcon },
+  { name: "Twitter", url: "https://x.com/dawescc", Icon: TwitterIcon },
+  { name: "Mail", url: "mailto:hello@dawes.cc", Icon: MailIcon },
+];
 
-const RunDataDisplay = () => {
-    const distance = useContext(RunContext);
-    return <>{distance}</>;
-};
+const FEATURED_PROJECTS = [
+  { name: "oklch.fyi", description: "oklch color generator & converter.", url: "https://www.oklch.fyi/", Icon: GitHubIcon },
+  { name: "Less", description: "Budgeting turned upside down.", url: "https://www.lessless.app/", Icon: GitHubIcon },
+];
 
-export function App() {
-    const [runDistance, setRunDistance] = useState<string>("hmmm");
+function App() {
+  return (
+    <div className="bg-bg font-merriweather text-text antialiased">
+      <main className="mx-auto max-w-[692px] px-6 py-12 leading-relaxed sm:py-16">
 
-    useEffect(() => {
-        async function fetchDistance() {
-            try {
-                const res = await fetch("/api/running/ytd-total");
-                if (!res.ok) throw new Error(`Error: ${res.status}`);
+        <div className="mt-8 mb-6 flex items-center gap-4">
+          <div className="-outline-offset-1 size-11 select-none rounded-full outline outline-text-sub/5 bg-border flex items-center justify-center text-lg font-medium text-text">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div className="flex flex-col items-start justify-center">
+            <span className="font-medium text-text leading-snug">Ryan Dawes</span>
+            <span className="whitespace-nowrap font-medium text-text-sub leading-snug">Application Developer for the Web</span>
+          </div>
+        </div>
 
-                const data = await res.json();
-                const distanceMeters = data.distance;
-                
-                if (typeof distanceMeters === "number") {
-                    setRunDistance((distanceMeters / 1000).toFixed(2));
-                } else {
-                     setRunDistance("???.??");
-                }
-            } catch (err) {
-                console.error(err);
-                setRunDistance("???.??");
-            }
-        }
-        fetchDistance();
-    }, []);
+        <Section id="about" marginless>
+          <p className="mb-6 text-text-sub">
+            I'm a Senior engineer with{" "}
+            <a
+              aria-label="Sanametrix"
+              className="link-outline article-underline font-medium text-text-sub transition-colors duration-200 ease-out"
+              href="https://sanametrix.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Sanametrix
+            </a>
+            . I build effective, dependable apps that are easy to use and love. I focus on the details that matter to keep things lightweight. I've run <RunYTD />km this year.
+          </p>
+        </Section>
 
-	const items = [
-		{
-			id: 1,
-			content: (
-				<div className="flex flex-col items-center justify-center h-full w-full text-center p-8 bg-zinc-50 dark:bg-zinc-900">
-                    <div className="flex-1 flex flex-col justify-center gap-6">
-                        <div className="w-20 h-20 rounded-2xl bg-white dark:bg-black shadow-sm flex items-center justify-center mx-auto ring-1 ring-zinc-900/5 dark:ring-white/10">
-                            <Terminal className="w-8 h-8 text-zinc-900 dark:text-zinc-100" strokeWidth={1.5} />
-                        </div>
-                        <div className="flex-1 flex flex-col justify-center gap-2">
-                            <h1 className='text-4xl font-black font-merry text-zinc-900 dark:text-white tracking-tight mb-2'>
-                                Ryan Dawes
-                            </h1>
-                            <p className='text-lg text-zinc-500 dark:text-zinc-400 font-medium font-geist'>
-                                Application Developer
-                            </p>
-                            <a
-                            href='https://github.com/dawescc/'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='w-full py-4 rounded-xl bg-white text-black font-bold text-center hover:bg-zinc-200 transition-colors'>
-                            View Github
-                            </a>
-                        </div>
-                    </div>
-				</div>
-			),
-		},
-		{
-			id: 2,
-			content: (
-				<div className="flex flex-col h-full w-full p-8 bg-orange-50 dark:bg-zinc-900 relative overflow-hidden">
-                    {/* Background Pattern */}
-                    <div className="absolute -right-10 -top-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
-                    <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <Section id="links" marginless className="mt-6 flex w-full flex-wrap justify-start gap-3">
+          {LINKS.map((link) => (
+            <Chip key={link.name}>
+              <a
+                className="flex items-center gap-1.5 h-9" aria-label={link.name} href={link.url} rel="noreferrer" target="_blank">
+                <link.Icon />
+                {link.name}
+              </a>
+            </Chip>
+          ))}
+        </Section>
 
-                    <div className="flex justify-between items-start z-10">
-                         <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center">
-                            <Activity className="w-6 h-6 text-orange-600 dark:text-orange-400" />
-                        </div>
-                    </div>
-                    
-                    <div className="flex-1 flex flex-col justify-center z-10">
-                        <div className="text-sm font-bold uppercase tracking-wider text-orange-600 dark:text-orange-500 mb-2">
-                            YTD Running Distance
-                        </div>
-                        <div className="flex items-baseline gap-2">
-                             <span className="font-black text-6xl text-zinc-900 dark:text-white font-merry tracking-tighter">
-						        <RunDataDisplay />
-                            </span>
-                            <span className="text-xl text-zinc-500 dark:text-zinc-400 font-medium">km</span>
-                        </div>
-					</div>
-
-                     <a
-						href='https://www.strava.com/athletes/144880512'
-						target='_blank'
-						rel='noopener noreferrer'
-						className='z-10 flex items-center gap-2 text-sm font-bold text-zinc-900 dark:text-white hover:opacity-70 transition-opacity'>
-						View on Strava <span aria-hidden="true">&rarr;</span>
-					</a>
-				</div>
-			),
-		},
-	];
-
-	return (
-        <RunContext.Provider value={runDistance}>
-            <main className='relative h-dvh w-full overflow-hidden bg-zinc-50 dark:bg-zinc-950 font-merry selection:bg-zinc-200 dark:selection:bg-zinc-800'>
-                
-                <div className="relative z-10 w-full h-full">
-                    <CardStack items={items} />
+        {/* <Section id="projects" className='sm:mt-32'>
+          <SectionHeader>Projects</SectionHeader>
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
+            {FEATURED_PROJECTS.map((project) => (
+              <Card key={project.name} isLink href={project.url} title={project.name} subtitle={project.description}>
+                <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl shadow-warm bg-surface-1">
+                  <project.Icon />
                 </div>
-                
-                <footer className="absolute bottom-6 left-0 right-0 text-center text-zinc-400 text-sm pointer-events-none z-0">
-                    Ryan Dawes &copy; {new Date().getFullYear()}
-                </footer>
-            </main>
-        </RunContext.Provider>
-	);
+              </Card>
+            ))}
+          </div>
+        </Section> */}
+
+        <Section id="footer">
+          <p className="select-none text-text-sub text-xs">© Ryan Dawes 2025</p>
+        </Section >
+
+      </main>
+    </div >
+  );
 }
 
 export default App;
