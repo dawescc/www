@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" theme="blue">
+<html
+	lang="en"
+	theme="pink">
 	<head>
 		<meta charset="UTF-8" />
+		<script>
+			try {
+				const savedTheme = localStorage.getItem("theme");
+				const validThemes = ["pink", "red", "blue", "green"];
+				if (savedTheme && validThemes.includes(savedTheme)) {
+					document.documentElement.setAttribute("theme", savedTheme);
+				}
+			} catch (e) {
+				// Access to localStorage may be denied
+			}
+		</script>
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<meta name="theme-color" content="oklch(0.87 0.03 55)" />
+		<meta
+			name="theme-color"
+			content="var(--background-color)" />
 		<link
 			rel="icon"
 			type="image/svg+xml"
@@ -32,5 +47,8 @@
 		<script
 			type="module"
 			src="./frontend.tsx"></script>
+		<script
+			type="module"
+			src="./index.js"></script>
 	</body>
 </html>
