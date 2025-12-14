@@ -11,9 +11,6 @@
 		"build": "bun run build.ts"
 	},
 	"dependencies": {
-		"@fontsource-variable/geist": "^5.2.6",
-		"@fontsource-variable/literata": "^5.2.6",
-		"@fontsource-variable/merriweather-sans": "^5.2.7",
 		"bun-plugin-tailwind": "^0.0.14",
 		"clsx": "^2.1.1",
 		"react": "^19",

@@ -8,7 +8,7 @@ const Section = ({ children, className, marginless, id }: { children: React.Reac
 
 const SectionHeader = ({ children, className }: { children: React.ReactNode, className?: string }) => {
     return (
-        <div className={`mb-5 flex w-full items-center font-medium text-text ${className}`}> {children}</div >
+        <div className={`mb-5 flex w-full items-center font-medium ${className}`}> {children}</div >
     )
 }
 

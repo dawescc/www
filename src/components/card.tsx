@@ -18,7 +18,7 @@ const Card = ({ children, className, isLink, href, title, subtitle }: { children
                 </div>
                 <div className="flex w-full flex-col items-start justify-center px-4 pb-4 pt-2">
                     <span className='font-medium'>{title}</span>
-                    <span className="font-normal text-text-sub">{subtitle}</span>
+                    <span className="text-midground">{subtitle}</span>
                 </div>
             </a>
         ) : (
@@ -30,7 +30,7 @@ const Card = ({ children, className, isLink, href, title, subtitle }: { children
                 </div>
                 <div className="flex w-full flex-col items-start justify-center px-4 pb-4 pt-2">
                     <span className='font-medium'>{title}</span>
-                    <span className="font-normal text-text-sub">{subtitle}</span>
+                    <span className="text-midground">{subtitle}</span>
                 </div>
             </div>
         )

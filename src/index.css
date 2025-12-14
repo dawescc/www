@@ -1,32 +1,113 @@
 @import "tailwindcss";
 
+@layer base {
+	html {
+		font-family: system-ui, ui-rounded;
+	}
+
+	:root {
+		--color-pink-1: oklch(0.65 0.1 350);
+		--color-pink-2: oklch(0.68 0.11 355);
+		--color-pink-3: oklch(0.72 0.12 0);
+		--color-pink-4: oklch(0.75 0.13 5);
+		--color-pink-5: oklch(0.77 0.11 10);
+		--color-pink-6: oklch(0.8 0.09 15);
+		--color-pink-7: oklch(0.83 0.07 20);
+		--color-pink-8: oklch(0.86 0.05 25);
+
+		--color-red-1: oklch(0.45 0.18 15);
+		--color-red-2: oklch(0.5 0.19 18);
+		--color-red-3: oklch(0.55 0.2 20);
+		--color-red-4: oklch(0.58 0.21 22);
+		--color-red-5: oklch(0.62 0.2 25);
+		--color-red-6: oklch(0.65 0.18 28);
+		--color-red-7: oklch(0.7 0.15 30);
+		--color-red-8: oklch(0.75 0.12 32);
+
+		--color-blue-1: oklch(0.25 0.08 250);
+		--color-blue-2: oklch(0.3 0.1 255);
+		--color-blue-3: oklch(0.35 0.12 260);
+		--color-blue-4: oklch(0.4 0.14 265);
+		--color-blue-5: oklch(0.45 0.15 270);
+		--color-blue-6: oklch(0.5 0.16 273);
+		--color-blue-7: oklch(0.55 0.15 275);
+		--color-blue-8: oklch(0.65 0.12 280);
+
+		--color-green-1: oklch(0.3 0.1 145);
+		--color-green-2: oklch(0.35 0.12 150);
+		--color-green-3: oklch(0.45 0.15 155);
+		--color-green-4: oklch(0.5 0.16 158);
+		--color-green-5: oklch(0.55 0.18 160);
+		--color-green-6: oklch(0.6 0.16 163);
+		--color-green-7: oklch(0.65 0.15 165);
+		--color-green-8: oklch(0.75 0.12 170);
+	}
+}
+
 @theme inline {
-	--color-sand-1: oklch(0.79 0.04 45);
-	--color-sand-2: oklch(0.77 0.035 48);
-	--color-sand-3: oklch(0.82 0.025 55);
-	--color-sand-4: oklch(0.87 0.03 55);
-	--color-sand-5: oklch(0.9 0.015 55);
-
-	--color-bg: var(--color-sand-4);
-	--color-surface-1: var(--color-sand-5);
-	--color-surface-2: var(--color-sand-3);
-	--color-border: var(--color-sand-2);
-
-	--color-text: oklch(0.32 0.06 55);
-	--color-text-sub: oklch(0.4 0.06 55);
+	--color-background: var(--color-background);
+	--color-surface-1: var(--color-surface-1);
+	--color-surface-2: var(--color-surface-2);
+	--color-surface-3: var(--color-surface-3);
+	--color-surface-4: var(--color-surface-4);
+	--color-surface-5: var(--color-surface-5);
+	--color-midground: var(--color-midground);
+	--color-foreground: var(--color-foreground);
 
 	--shadow-warm: 0px 0px 0px 1px oklch(0.35 0.06 55 / 0.06), 0px 1px 2px -1px oklch(0.35 0.06 55 / 0.06), 0px 2px 4px 0px oklch(0.35 0.06 55 / 0.04);
 	--shadow-warm-hover: 0px 0px 0px 1px oklch(0.35 0.06 55 / 0.08), 0px 1px 3px -2px oklch(0.35 0.06 55 / 0.12), 0px 2px 4px 0px oklch(0.35 0.06 55 / 0.08);
-
-	--font-merriweather: "Merriweather Sans Variable", sans-serif;
 }
 
 @layer base {
 	html {
+		&[theme="pink"] {
+			--color-background: var(--color-pink-1);
+			--color-surface-1: var(--color-pink-2);
+			--color-surface-2: var(--color-pink-3);
+			--color-surface-3: var(--color-pink-4);
+			--color-surface-4: var(--color-pink-5);
+			--color-surface-5: var(--color-pink-6);
+			--color-midground: var(--color-pink-7);
+			--color-foreground: var(--color-pink-8);
+		}
+
+		&[theme="red"] {
+			--color-background: var(--color-red-1);
+			--color-surface-1: var(--color-red-2);
+			--color-surface-2: var(--color-red-3);
+			--color-surface-3: var(--color-red-4);
+			--color-surface-4: var(--color-red-5);
+			--color-surface-5: var(--color-red-6);
+			--color-midground: var(--color-red-7);
+			--color-foreground: var(--color-red-8);
+		}
+
+		&[theme="blue"] {
+			--color-background: var(--color-blue-1);
+			--color-surface-1: var(--color-blue-2);
+			--color-surface-2: var(--color-blue-3);
+			--color-surface-3: var(--color-blue-4);
+			--color-surface-4: var(--color-blue-5);
+			--color-surface-5: var(--color-blue-6);
+			--color-midground: var(--color-blue-7);
+			--color-foreground: var(--color-blue-8);
+		}
+
+		&[theme="green"] {
+			--color-background: var(--color-green-1);
+			--color-surface-1: var(--color-green-2);
+			--color-surface-2: var(--color-green-3);
+			--color-surface-3: var(--color-green-4);
+			--color-surface-4: var(--color-green-5);
+			--color-surface-5: var(--color-green-6);
+			--color-midground: var(--color-green-7);
+			--color-foreground: var(--color-green-8);
+		}
+
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		background-color: var(--color-bg);
-		color: var(--color-text);
+		background-color: var(--color-background);
+		color: var(--color-foreground);
 	}
 }
 
@@ -34,15 +115,16 @@
 	text-underline-offset: 3px;
 	transition: color 0.2s ease-out, text-decoration-color 0.2s ease-out;
 	text-decoration-line: underline;
-	text-decoration-color: var(--color-surface-2);
+	text-decoration-color: var(--color-surface-5);
 }
+
 .article-underline:hover {
-	text-decoration-color: var(--color-text);
-	color: var(--color-text);
+	text-decoration-color: var(--color-foreground);
+	color: var(--color-foreground);
 }
 
 .link-outline:focus-visible {
-	outline: 2px solid var(--color-text);
+	outline: 2px solid var(--color-foreground);
 	outline-offset: 2px;
 	border-radius: 2px;
 }
