@@ -1,10 +1,10 @@
 {
-  "updated_at": 1765725276,
+  "updated_at": 1772826038,
   "data": {
-    "count": 136,
-    "distance": 793581,
-    "moving_time": 301967,
-    "elapsed_time": 307394,
-    "elevation_gain": 3895.0000000000005
+    "count": 5,
+    "distance": 21440,
+    "moving_time": 7462,
+    "elapsed_time": 7585,
+    "elevation_gain": 21
   }
 }
