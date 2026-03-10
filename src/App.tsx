@@ -16,6 +16,7 @@ function App() {
 							rel='noreferrer'>
 							<RiRunFill />
 							<RunYTD />
+							Km
 						</a>
 					</div>
 				</header>
@@ -49,7 +50,7 @@ function App() {
 							href='https://www.twitter.com/dawescc'>
 							Twitter
 						</a>{" "}
-						account, the account is largely inactive. You are much more likely to find reach me via <a href='mailto:hello@dawes.cc'>email</a>.
+						account, the account is largely inactive. You are much more likely to reach me via <a href='mailto:hello@dawes.cc'>email</a>.
 					</p>
 					<p className='details'>
 						Visit my{" "}
