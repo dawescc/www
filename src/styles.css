@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@layer base {
+	html {
+		font-family: system-ui, ui-rounded;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@theme inline {
+	--font-display: 'Fascinate', system-ui;
+	--font-serif: 'Merriweather Variable', system-serif;
+	--color-background: var(--color-background);
+	--color-surface-1: var(--color-surface-1);
+	--color-surface-2: var(--color-surface-2);
+	--color-foreground: var(--color-foreground);
+}
+
+@layer base {
+	html {
+		--color-background: #f3f3f3ff;
+		--color-surface-1: #fff;
+		--color-surface-2: #fafafa;
+		--color-foreground: #000;
+
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+	}
+
+	main {
+		padding-bottom: 2em;
+	}
+}
+
+@layer components {
+
+	.tools {
+		display: flex;
+		position: absolute;
+		right: 5px;
+		top: 1rem;
+
+		a {
+			margin: 2px;
+			display: flex;
+			align-items: center;
+		}
+
+	}
+
+	@media (min-width: 950px) and (min-height: 600px) {
+		tools {
+			right: 10px;
+			top: 10px;
+
+			a {
+				margin: 5px
+			}
+		}
+	}
+
+	@keyframes fadeInUp {
+		0% {
+			opacity: 0;
+			-webkit-transform: translate3d(0, 100%, 0);
+			transform: translate3d(0, 100%, 0)
+		}
+
+		to {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none
+		}
+	}
+
+	.animated {
+		animation-name: fadeInUp;
+		animation-duration: .5s;
+		animation-fill-mode: both;
+	}
+
+	.hero {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		height: 33vh;
+	}
+
+	@media (min-width: 950px) and (min-height: 600px) {
+		.hero {
+			height: 100vh
+		}
+	}
+
+	.section {
+		max-width: calc(100% - 40px);
+		margin: 0 auto;
+		height: auto;
+	}
+
+	@media (min-width: 950px) and (min-height: 600px) {
+		.section {
+			max-width: 600px;
+		}
+	}
+
+	h2 {
+		font-size: 1.8rem;
+		font-weight: 700;
+		margin-block: .83em;
+		margin-inline: 0px;
+	}
+
+	p {
+		font-size: 1.125rem;
+		line-height: 1.5625rem;
+		font-weight: 500;
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px
+	}
+
+	strong {
+		font-weight: 700
+	}
+
+	em {
+		font-style: italic
+	}
+
+	a,
+	a:link {
+		color: currentColor;
+		text-decoration: underline;
+		text-decoration-color: currentColor;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 4px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.details {
+		font-weight: 700;
+		margin: 1rem auto
+	}
+}

@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
-import { App } from "./App";
+import App from "./App";
+import "@fontsource/fascinate";
+import "@fontsource-variable/merriweather";
 
 function start() {
 	const root = createRoot(document.getElementById("root")!);
